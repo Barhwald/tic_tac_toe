@@ -29,6 +29,11 @@ public class DataPrinter {
                 " and " + player2.getName() + " will use " + player2.getPlayerSymbol());
     }
 
+    public void printWhoseTurnIsIt(int turnCount, Player currentPlayer) {
+        System.out.println("-".repeat(50));
+        System.out.printf("Turn %d. %s is moving\n", turnCount, currentPlayer.getName());
+    }
+
     public void printWinResult(int turnCount, Player player) {
         System.out.printf("""
                 The game lasted %d turns

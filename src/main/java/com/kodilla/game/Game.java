@@ -53,8 +53,7 @@ public class Game {
                 turnCount++;
                 currentPlayer = whoseTurnIsNow();
 
-                System.out.println("-".repeat(50));
-                System.out.printf("Turn %d. %s is moving\n", turnCount, currentPlayer.getName());
+                dataPrinter.printWhoseTurnIsIt(turnCount, currentPlayer);
 
                 int chosenField = 0;
                 try {
