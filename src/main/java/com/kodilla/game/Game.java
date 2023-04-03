@@ -52,7 +52,6 @@ public class Game {
             while (keepPlaying) {
                 turnCount++;
                 currentPlayer = whoseTurnIsNow();
-
                 dataPrinter.printWhoseTurnIsIt(turnCount, currentPlayer);
 
                 int chosenField = 0;
