@@ -18,6 +18,18 @@ public class Game {
         this.gameCount = gameCount;
     }
 
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public void setPlayer1(Player player1) {
+        this.player1 = player1;
+    }
+
     public void setGame() {
         dataPrinter = new DataPrinter();
         dataReader = new DataReader();
@@ -122,9 +134,9 @@ public class Game {
     }
 
     public boolean checkIfWon(Player player) {
-        boolean playerWon = false;
+        boolean playerWon;
 
-        if (turnCount < 5) return playerWon;
+        if (turnCount < 5) return false;
 
         playerWon = checkIfWonHorizontalAndVertical(player) || checkIfWonDiagonal(player);
         return playerWon;

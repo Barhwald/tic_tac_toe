@@ -27,7 +27,6 @@ public class DataReader {
         if (Integer.parseInt(FieldNumber) > 0 && Integer.parseInt(FieldNumber) < 10) {
             chosenField = Integer.parseInt(FieldNumber);
         } else {
-            System.out.println("Wrong type of input");
             throw new NumberFormatException();
         }
         return chosenField;
