@@ -4,8 +4,8 @@ public class BoardField {
 
     private char value;
     private boolean isEmpty;
-    private int coordinateX;
-    private int coordinateY;
+    private final int coordinateX;
+    private final int coordinateY;
 
     public BoardField(int coordinateX, int coordinateY, char value, boolean isEmpty) {
         this.coordinateX = coordinateX;
@@ -30,6 +30,11 @@ public class BoardField {
         isEmpty = state;
     }
 
+    public int getCoordinateX() {
+        return coordinateX;
+    }
 
-
+    public int getCoordinateY() {
+        return coordinateY;
+    }
 }
