@@ -121,7 +121,7 @@ public class Game {
             }
         } while (dataReader.playAgain());
 
-        showResults();
+        dataPrinter.printTotalScoreInfo(player1, player2);
 
     }
 
@@ -247,7 +247,7 @@ public class Game {
         return playerWon;
     }
 
-    public boolean checkIfWonDiagonalUp(int loopLimit, int rowSize, String victory) {
+    public boolean checkIfWonDiagonal(int loopLimit, int rowSize, String victory) {
         boolean playerWon = false;
 
         outerLoop:
@@ -259,63 +259,34 @@ public class Game {
                         .filter(obj -> obj.getCoordinateY() >= finalI && obj.getCoordinateY() <= finalI + rowSize)
                         .filter(obj -> obj.getCoordinateX() >= finalJ && obj.getCoordinateX() <= finalJ + rowSize)
                         .toList();
-                StringBuilder checkedInput = new StringBuilder();
+                StringBuilder checkedInputUp = new StringBuilder();
+                StringBuilder checkedInputDown = new StringBuilder();
                 int difference = finalJ - finalI;
-                for (BoardField field : checkedList) {
-                    if (field.getCoordinateX() - field.getCoordinateY() == difference) {
-                        checkedInput.append(field.getValue());
-                    }
-                }
-                if (checkedInput.toString().equals(victory)) {
-                    playerWon = true;
-                    break outerLoop;
-                }
-            }
-        }
-        return playerWon;
-    }
-
-    public boolean checkIfWonDiagonalDown(int loopLimit, int rowSize, String victory) {
-        boolean playerWon = false;
-
-        outerLoop:
-        for (int i = 1; i < loopLimit; i++) {
-            for (int j = 1; j < loopLimit; j++) {
-                int finalI = i;
-                int finalJ = j;
-                List<BoardField> checkedList = board.getFieldList().stream()
-                        .filter(obj -> obj.getCoordinateY() >= finalI && obj.getCoordinateY() <= finalI + rowSize)
-                        .filter(obj -> obj.getCoordinateX() >= finalJ && obj.getCoordinateX() <= finalJ + rowSize)
-                        .toList();
-                StringBuilder checkedInput = new StringBuilder();
                 int sum = finalJ + finalI + rowSize;
                 for (BoardField field : checkedList) {
+                    if (field.getCoordinateX() - field.getCoordinateY() == difference) {
+                        checkedInputUp.append(field.getValue());
+                    }
                     if (field.getCoordinateX() + field.getCoordinateY() == sum) {
-                        checkedInput.append(field.getValue());
+                        checkedInputDown.append(field.getValue());
                     }
                 }
-
-                if (checkedInput.toString().equals(victory)) {
+                if (checkedInputUp.toString().equals(victory)) {
+                    playerWon = true;
+                    break outerLoop;
+                }
+                if (checkedInputDown.toString().equals(victory)) {
                     playerWon = true;
                     break outerLoop;
                 }
             }
         }
         return playerWon;
-    }
-
-    public boolean checkIfWonDiagonal(int loopLimit, int rowSize, String victory) {
-        return checkIfWonDiagonalUp(loopLimit, rowSize, victory)
-        || checkIfWonDiagonalDown(loopLimit, rowSize, victory);
     }
 
     public void runApp() {
         setGame();
         playGame(player1, player2);
-    }
-
-    public void showResults() {
-        dataPrinter.printTotalScoreInfo(player1, player2);
     }
 
     public void setTurnCount(int turnCount) {

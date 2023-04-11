@@ -316,25 +316,45 @@ public class TicTacToeTestSuite {
 
     }
 
-    public static int readChosenField() throws NumberFormatException {
+    public static int setCoordinate() throws NumberFormatException {
+        int num;
         String FieldNumber = "e";
-        int chosenField;
-        if (Integer.parseInt(FieldNumber) > 0 && Integer.parseInt(FieldNumber) < 10) {
-            chosenField = Integer.parseInt(FieldNumber);
+        if (Integer.parseInt(FieldNumber) > 0 && Integer.parseInt(FieldNumber) <= Board.getBoardSize()) {
+            num = Integer.parseInt(FieldNumber);
         } else {
-            throw new NumberFormatException();
+            throw new RuntimeException();
         }
-        return chosenField;
+        return num;
     }
 
     @DisplayName("Test for a wrong input")
     @Test
-    void testExceptionThrownWithInputE() {
+    void testExceptionThrownWrongCoordinate() {
         //Given
         game = new Game();
         //When & Then
-        assertThrows(NumberFormatException.class, TicTacToeTestSuite::readChosenField);
+        assertThrows(RuntimeException.class, TicTacToeTestSuite::setCoordinate);
 
+    }
+
+    public static int setBoardSize() throws RuntimeException {
+        int size;
+        String boardSize = "4";
+        if (Integer.parseInt(boardSize) == 3 || Integer.parseInt(boardSize) == 10) {
+            size = Integer.parseInt(boardSize);
+        } else {
+            throw new RuntimeException();
+        }
+        return size;
+    }
+
+    @DisplayName("Test for a wrong board size: 4")
+    @Test
+    void testExceptionThrownWrongBoardSize() {
+        //Given
+        game = new Game();
+        //When & Then
+        assertThrows(RuntimeException.class, TicTacToeTestSuite::setBoardSize);
     }
 
     @DisplayName("Test for an occupied field")
@@ -363,7 +383,6 @@ public class TicTacToeTestSuite {
         game.interactWithFieldHuman(player2, field);
         //Then
         assertNotEquals(player2.getPlayerSymbol(), field.getValue());
-
     }
 
 }

@@ -32,27 +32,37 @@ public class DataReader {
         int size = 0;
         do {
             try {
-                size = Integer.parseInt(myScanner.nextLine());
-            } catch (NumberFormatException e) {
+                String boardSize = myScanner.nextLine();
+                if (Integer.parseInt(boardSize) == 3 || Integer.parseInt(boardSize) == 10) {
+                    size = Integer.parseInt(boardSize);
+                    isInputValid = false;
+                } else {
+                    throw new RuntimeException();
+                }
+            } catch (RuntimeException e) {
                 System.out.println("Wrong input. Type 3 or 10.");
             }
-            if (size == 3 || size == 10) isInputValid = false;
+
         } while (isInputValid);
         return size;
     }
 
-    // need to handle exceptions
     public int readCoordinate() {
         boolean isInputValid = true;
         int num = 0;
         do {
-            String FieldNumber = myScanner.nextLine();
-            if (Integer.parseInt(FieldNumber) > 0 && Integer.parseInt(FieldNumber) <= Board.getBoardSize()) {
-                num = Integer.parseInt(FieldNumber);
-                isInputValid = false;
-            } else {
+            try {
+                String FieldNumber = myScanner.nextLine();
+                if (Integer.parseInt(FieldNumber) > 0 && Integer.parseInt(FieldNumber) <= Board.getBoardSize()) {
+                    num = Integer.parseInt(FieldNumber);
+                    isInputValid = false;
+                } else {
+                    throw new RuntimeException();
+                }
+            } catch (RuntimeException e) {
                 System.out.println("Invalid input. You must type a number between 1-" + Board.getBoardSize());
             }
+
         } while (isInputValid);
         return num;
     }
