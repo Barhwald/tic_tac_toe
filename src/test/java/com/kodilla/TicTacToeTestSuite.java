@@ -316,7 +316,7 @@ public class TicTacToeTestSuite {
 
     }
 
-    public static int setCoordinate() throws NumberFormatException {
+    public static int setCoordinate() throws RuntimeException {
         int num;
         String FieldNumber = "e";
         if (Integer.parseInt(FieldNumber) > 0 && Integer.parseInt(FieldNumber) <= Board.getBoardSize()) {
