@@ -1,0 +1,12 @@
+mic: won 3, lost 0, tied 0 --- Tue Apr 18 21:14:11 CEST 2023
+rety: won 1, lost 0, tied 0 --- Tue Apr 18 21:17:05 CEST 2023
+Mike: won 4, lost 0, tied 0 --- Tue Apr 18 21:18:36 CEST 2023
+wera: won 1, lost 0, tied 0 --- Tue Apr 18 21:20:48 CEST 2023
+qer: won 1, lost 0, tied 0 --- Tue Apr 18 21:24:30 CEST 2023
+Sandra: won 2, lost 0, tied 0 --- Tue Apr 18 21:25:45 CEST 2023
+Michał: won 2, lost 0, tied 0 --- Tue Apr 18 21:27:36 CEST 2023
+Barbara: won 1, lost 0, tied 0 --- Tue Apr 18 21:29:34 CEST 2023
+nec: won 1, lost 0, tied 0 --- Tue Apr 18 21:37:12 CEST 2023
+ve: won 1, lost 0, tied 0 --- Tue Apr 18 21:42:00 CEST 2023
+trer: won 2, lost 0, tied 0 --- Tue Apr 18 21:43:34 CEST 2023
+3: won 3, lost 0, tied 1 --- Tue Apr 18 21:45:04 CEST 2023

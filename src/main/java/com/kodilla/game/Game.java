@@ -1,7 +1,9 @@
 package com.kodilla.game;
 
-import java.util.List;
-import java.util.Random;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
 
 public class Game {
 
@@ -122,7 +124,15 @@ public class Game {
         } while (dataReader.playAgain());
 
         dataPrinter.printTotalScoreInfo(player1, player2);
+        saveScore(player1);
 
+        if (player2 instanceof humanPlayer) {
+            saveScore(player2);
+        }
+
+        if (dataReader.doPrintRanking()) {
+            dataPrinter.printRanking();
+        }
     }
 
     public Player whoseTurnIsNow() {
@@ -271,17 +281,27 @@ public class Game {
                         checkedInputDown.append(field.getValue());
                     }
                 }
-                if (checkedInputUp.toString().equals(victory)) {
-                    playerWon = true;
-                    break outerLoop;
-                }
-                if (checkedInputDown.toString().equals(victory)) {
+                if (checkedInputUp.toString().equals(victory) || checkedInputDown.toString().equals(victory)) {
                     playerWon = true;
                     break outerLoop;
                 }
             }
         }
         return playerWon;
+    }
+
+    public void saveScore(Player player) {
+
+        try {
+            FileWriter filewriter = new FileWriter("src/main/java/com/kodilla/game/scores.txt", true);
+            BufferedWriter writer = new BufferedWriter(filewriter);
+            writer.write(player.getName() + ": won " + player.getWins() + ", lost " + player.getLoses()
+                    + ", tied " + player.getTies() + " --- " + Calendar.getInstance().getTime() + "\n");
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Error emerged: " + e);
+        }
+
     }
 
     public void runApp() {

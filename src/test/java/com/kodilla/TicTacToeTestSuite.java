@@ -309,7 +309,7 @@ public class TicTacToeTestSuite {
         spyGame.setPlayer1(player1);
         spyGame.setBoard(board);
         // When
-        Mockito.when(spyGame.checkIfWon(player1)).thenReturn(false);
+//        Mockito.when(spyGame.checkIfWon(player1)).thenReturn(false);
         boolean tie = spyGame.checkIfTied(9, player1);
         //Then
         assertTrue(tie);

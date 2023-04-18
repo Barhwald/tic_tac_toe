@@ -68,7 +68,7 @@ public class DataReader {
     }
 
     public boolean playAgain() {
-        System.out.print("Wanna play again? Type y to replay and any other key to close: ");
+        System.out.print("Wanna play again? Type y to replay or any other key to close: \n");
         String input = myScanner.nextLine();
         return (input.equals("y"));
     }
@@ -78,6 +78,12 @@ public class DataReader {
                 Do you want to play with AI? Or fancy playing a hot-seat game with a friend?\s
                 Type y for a singleplayer or any other key to play with a friend: \s
                 """);
+        String input = myScanner.nextLine();
+        return (input.equals("y"));
+    }
+
+    public boolean doPrintRanking() {
+        System.out.print("Do you want to see High Scores? Type y to print them or any other key to close: ");
         String input = myScanner.nextLine();
         return (input.equals("y"));
     }
