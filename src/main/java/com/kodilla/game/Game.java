@@ -3,6 +3,8 @@ package com.kodilla.game;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Game {
@@ -15,6 +17,7 @@ public class Game {
     private int turnCount;
     private int gameCount;
     private Random random;
+    private Ranking ranking;
 
     public int getGameCount() {
         return gameCount;
@@ -48,6 +51,7 @@ public class Game {
         dataPrinter = new DataPrinter();
         dataReader = new DataReader();
         random = new Random();
+        ranking = new Ranking();
         dataPrinter.printWelcomeMessage();
         createPlayers();
         setPlayersOptions();
@@ -106,6 +110,7 @@ public class Game {
                 if (checkIfWon(currentPlayer)) {
                     dataPrinter.printWinResult(turnCount, currentPlayer);
                     currentPlayer.setWins(currentPlayer.getWins() + 1);
+                    currentPlayer.setScore(currentPlayer.getScore() + 10);
                     if (currentPlayer == player1) {
                         player2.setLoses(player2.getLoses() + 1);
                     } else {
@@ -115,6 +120,7 @@ public class Game {
                 }
 
                 if (checkIfTied(turnCount, currentPlayer)) {
+                    currentPlayer.setScore(currentPlayer.getScore() + 5);
                     player1.setTies(player1.getTies() + 1);
                     player2.setTies(player2.getTies() + 1);
                     dataPrinter.printTieResult();
@@ -131,7 +137,8 @@ public class Game {
         }
 
         if (dataReader.doPrintRanking()) {
-            dataPrinter.printRanking();
+            ranking.setScoresList();
+            dataPrinter.printRanking(ranking);
         }
     }
 
@@ -293,10 +300,12 @@ public class Game {
     public void saveScore(Player player) {
 
         try {
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            LocalDateTime now = LocalDateTime.now();
             FileWriter filewriter = new FileWriter("src/main/java/com/kodilla/game/scores.txt", true);
             BufferedWriter writer = new BufferedWriter(filewriter);
-            writer.write(player.getName() + ": won " + player.getWins() + ", lost " + player.getLoses()
-                    + ", tied " + player.getTies() + " --- " + Calendar.getInstance().getTime() + "\n");
+            writer.write(player.getName() + " ".repeat(14 - player.getName().length()) + player.getScore() +
+                    " ".repeat(15 - String.valueOf(player.getScore()).length()) + dtf.format(now) + "\n");
             writer.close();
         } catch (IOException e) {
             System.out.println("Error emerged: " + e);

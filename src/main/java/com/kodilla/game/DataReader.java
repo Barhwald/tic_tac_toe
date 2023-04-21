@@ -68,7 +68,7 @@ public class DataReader {
     }
 
     public boolean playAgain() {
-        System.out.print("Wanna play again? Type y to replay or any other key to close: \n");
+        System.out.print("Wanna play again? Type y to replay or any other key to close: ");
         String input = myScanner.nextLine();
         return (input.equals("y"));
     }

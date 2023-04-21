@@ -1,13 +1,5 @@
 package com.kodilla.game;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Stream;
-
 public class DataPrinter {
 
     public void printWelcomeMessage() {
@@ -103,6 +95,7 @@ public class DataPrinter {
 
     public void printTotalScoreInfo(Player player1, Player player2) {
         System.out.printf("""
+                        
                         %s won %d, lost %d, tied %d.
                         %s won %d, lost %d, tied %d.
                                                \s
@@ -110,24 +103,19 @@ public class DataPrinter {
                 player2.getName(), player2.getWins(), player2.getLoses(), player2.getTies());
     }
 
-    public void printRanking() {
-        List<String> sortableList = null;
-        Path file = Paths.get("src/main/java/com/kodilla/game/scores.txt");
+    public void printRanking(Ranking ranking) {
 
-        try (Stream<String> lines = Files.lines(file)) {
-            sortableList = new ArrayList<>(lines.toList());
-        } catch (IOException e) {
-            System.out.println("Failed to load file: " + e);
+        System.out.printf(""" 
+                --- HIGH SCORES ---
+                
+                %-14s%-15s%-14s
+                
+                """, "Name", "Points", "Date");
+
+        for (RankingRecord record : ranking.getScoresList()) {
+            System.out.println(record.getText());
         }
 
-        assert sortableList != null;
-        sortableList.sort(String.CASE_INSENSITIVE_ORDER);
-
-        System.out.println("\n --- HIGH SCORES --- \n");
-
-        for (String line : sortableList) {
-            System.out.println(line);
-        }
     }
 
 }
