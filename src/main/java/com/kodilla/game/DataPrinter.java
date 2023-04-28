@@ -74,7 +74,7 @@ public class DataPrinter {
     }
 
     public void printWinResult(int turnCount, Player player) {
-        if (player instanceof humanPlayer) {
+        if (player instanceof HumanPlayer) {
             System.out.printf("""
                     The game lasted %d turns
                     %s won! Congratulations!

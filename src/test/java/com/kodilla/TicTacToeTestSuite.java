@@ -9,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 public class TicTacToeTestSuite {
 
@@ -27,7 +26,7 @@ public class TicTacToeTestSuite {
         @BeforeEach
         void setData() {
             game = new Game();
-            player1 = new humanPlayer("Player1");
+            player1 = new HumanPlayer("Player1");
             Board.setBoardSize(3);
             board = new Board();
             game.setPlayer1(player1);
@@ -165,7 +164,7 @@ public class TicTacToeTestSuite {
         @BeforeEach
         void setData() {
             game = new Game();
-            player1 = new humanPlayer("Player1");
+            player1 = new HumanPlayer("Player1");
             Board.setBoardSize(3);
             board = new Board();
             game.setPlayer1(player1);
@@ -303,7 +302,7 @@ public class TicTacToeTestSuite {
         //Given
         game = new Game();
         Game spyGame = spy(game);
-        Player player1 = new humanPlayer("Player1");
+        Player player1 = new HumanPlayer("Player1");
         Board board = new Board();
         Board.setBoardSize(3);
         spyGame.setPlayer1(player1);
@@ -362,8 +361,8 @@ public class TicTacToeTestSuite {
     void testOccupiedField() {
         //Given
         game = new Game();
-        player1 = new humanPlayer("Player1");
-        Player player2 = new humanPlayer("Player2");
+        player1 = new HumanPlayer("Player1");
+        Player player2 = new HumanPlayer("Player2");
         Board.setBoardSize(3);
         board = new Board();
         game.setPlayer1(player1);

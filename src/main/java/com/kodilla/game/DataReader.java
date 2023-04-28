@@ -7,8 +7,8 @@ public class DataReader {
     private static final Scanner myScanner = new Scanner(System.in);
 
     public String readPlayerName() {
-        System.out.print("Player " + humanPlayer.playerNumber + ". Type your name: ");
-        humanPlayer.incrementPlayerNumber();
+        System.out.print("Player " + HumanPlayer.playerNumber + ". Type your name: ");
+        HumanPlayer.incrementPlayerNumber();
         return myScanner.nextLine();
     }
 

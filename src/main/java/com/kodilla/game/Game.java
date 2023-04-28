@@ -64,11 +64,11 @@ public class Game {
 
     public void createPlayers() {
         if (dataReader.playWithAi()) {
-            player1 = new humanPlayer(dataReader.readPlayerName());
+            player1 = new HumanPlayer(dataReader.readPlayerName());
             player2 = new AiPlayer("Computer");
         } else {
-            player1 = new humanPlayer(dataReader.readPlayerName());
-            player2 = new humanPlayer(dataReader.readPlayerName());
+            player1 = new HumanPlayer(dataReader.readPlayerName());
+            player2 = new HumanPlayer(dataReader.readPlayerName());
         }
     }
 
@@ -100,7 +100,7 @@ public class Game {
                 currentPlayer = whoseTurnIsNow();
                 dataPrinter.printWhoseTurnIsIt(turnCount, currentPlayer);
 
-                if (currentPlayer instanceof humanPlayer) {
+                if (currentPlayer instanceof HumanPlayer) {
                     BoardField chosenField = getFieldChosenByHuman();
                     interactWithFieldHuman(currentPlayer, chosenField);
 
@@ -135,7 +135,7 @@ public class Game {
         dataPrinter.printTotalScoreInfo(player1, player2);
         saveScore(player1);
 
-        if (player2 instanceof humanPlayer) {
+        if (player2 instanceof HumanPlayer) {
             saveScore(player2);
         }
 

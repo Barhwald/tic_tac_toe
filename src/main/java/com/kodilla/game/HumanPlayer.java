@@ -1,6 +1,6 @@
 package com.kodilla.game;
 
-public class humanPlayer implements Player{
+public class HumanPlayer implements Player{
 
     static int playerNumber = 1;
     private String name;
@@ -11,7 +11,7 @@ public class humanPlayer implements Player{
     private int score;
 
 
-    public humanPlayer(String name) {
+    public HumanPlayer(String name) {
         this.name = name;
     }
 
