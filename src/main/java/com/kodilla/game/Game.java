@@ -1,8 +1,11 @@
 package com.kodilla.game;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -299,16 +302,22 @@ public class Game {
 
     public void saveScore(Player player) {
 
+        String FILE_NAME = "scores.txt";
+
         try {
+            URI source = this.getClass().getResource("/").toURI();
+            File file = new File(new File(source),FILE_NAME);
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
             LocalDateTime now = LocalDateTime.now();
-            FileWriter filewriter = new FileWriter("src/main/java/com/kodilla/game/scores.txt", true);
+            FileWriter filewriter = new FileWriter(file, true);
             BufferedWriter writer = new BufferedWriter(filewriter);
             writer.write(player.getName() + " ".repeat(14 - player.getName().length()) + player.getScore() +
                     " ".repeat(15 - String.valueOf(player.getScore()).length()) + dtf.format(now) + "\n");
             writer.close();
         } catch (IOException e) {
             System.out.println("Error emerged: " + e);
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
         }
 
     }

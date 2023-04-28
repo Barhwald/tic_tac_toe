@@ -1,6 +1,9 @@
 package com.kodilla.game;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,10 +17,19 @@ public class Ranking {
     private List<RankingRecord> scoresList;
 
     public void setScoresList() {
-        List<String> sortableList = null;
-        Path file = Paths.get("src/main/java/com/kodilla/game/scores.txt");
+        File file;
 
-        try (Stream<String> lines = Files.lines(file)) {
+        try {
+            String FILE_NAME = "scores.txt";
+            URI source = this.getClass().getResource("/").toURI();
+            file = new File(new File(source), FILE_NAME);
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        Path path = file.toPath();
+        List<String> sortableList = null;
+
+        try (Stream<String> lines = Files.lines(path)) {
             sortableList = new ArrayList<>(lines.toList());
         } catch (IOException e) {
             System.out.println("Failed to load file: " + e);

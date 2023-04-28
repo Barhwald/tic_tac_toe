@@ -7,5 +7,4 @@ public class GameRunner {
         game.runApp();
 
     }
-
 }
